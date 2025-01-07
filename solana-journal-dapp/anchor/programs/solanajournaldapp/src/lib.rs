@@ -1,9 +1,9 @@
 use anchor_lang::prelude::*;
 
-declare_id!("");
+declare_id!("9jTdS52RzC7RqQtFsBQzbUKdZN64egXDJzcw6wyDHYAZ");
 
 #[program]
-pub mod journal {
+pub mod solanajournaldapp {
     use super::*;
 
     pub fn create_journal_entry(
@@ -38,7 +38,7 @@ pub mod journal {
         Ok(())
     }
 
-    pub fn delete_journal_entry(ctx: Context<DeleteEntry>, title: String) -> Result<()> {
+    pub fn delete_journal_entry(_ctx: Context<DeleteEntry>, title: String) -> Result<()> {
         msg!("Deleting a journal entry");
         msg!("Title: {}", title);
 
@@ -85,7 +85,7 @@ pub struct UpdateEntry<'info> {
 #[derive(Accounts)]
 #[instruction(title:String)]
 pub struct DeleteEntry<'info> {
-    #[account(mut,seeds=[title.as_bytes(),owner.key().as_ref()],bump,closer=owner)]
+    #[account(mut,seeds=[title.as_bytes(),owner.key().as_ref()],bump,close=owner)]
     pub journal_entry: Account<'info, JournalEntryState>,
     #[account(mut)]
     pub owner: Signer<'info>,
