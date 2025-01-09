@@ -14,8 +14,8 @@ export function UiLayout({ children, links }: { children: ReactNode; links: { la
   const pathname = usePathname();
 
   return (
-    <div className='h-full flex flex-col'>
-      <div className='navbar bg-base-300 text-neutral-content flex-col md:flex-row space-y-2 md:space-y-0'>
+    <div className='h-full flex flex-col bg-slate-400'>
+      <div className='navbar  text-neutral-content flex-col md:flex-row space-y-2 md:space-y-0'>
         <div className='flex-1'>
           <ul className='menu menu-horizontal px-1 space-x-2'>
             {links.map(({ label, path }) => (
@@ -35,7 +35,7 @@ export function UiLayout({ children, links }: { children: ReactNode; links: { la
       <ClusterChecker>
         <AccountChecker />
       </ClusterChecker>
-      <div className='flex-grow mx-4 lg:mx-auto'>
+      <div className='flex-grow mx-4 lg:mx-auto '>
         <Suspense
           fallback={
             <div className='text-center my-32'>
