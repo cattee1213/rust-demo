@@ -1,5 +1,5 @@
-import DashboardFeature from '@/components/dashboard/dashboard-feature'
+import SolanajournaldappFeature from '@/components/solanajournaldapp/solanajournaldapp-feature';
 
 export default function Page() {
-  return <DashboardFeature />
+  return <SolanajournaldappFeature></SolanajournaldappFeature>;
 }

@@ -1,9 +1,11 @@
 use anchor_lang::prelude::*;
 
-declare_id!("EdDx2AqkYMCyaEP9aCKeYVjPdm5naw1KMBuWoqGoxVFA");
+declare_id!("GkfhJkLBLMzjgxSud1YqNcFNwa71mQWT2rFxdqgZb1v5");
 
 #[program]
 pub mod solanajournaldapp {
+    use anchor_lang::solana_program::clock;
+
     use super::*;
 
     pub fn create_journal_entry(
@@ -19,6 +21,7 @@ pub mod solanajournaldapp {
         journal_entry.owner = ctx.accounts.owner.key();
         journal_entry.title = title.clone();
         journal_entry.message = message;
+        journal_entry.timestamp = clock::Clock::get()?.unix_timestamp;
 
         Ok(())
     }
@@ -54,6 +57,7 @@ pub struct JournalEntryState {
     pub title: String,
     #[max_len(1000)]
     pub message: String,
+    pub timestamp: i64,
 }
 
 #[derive(Accounts)]
